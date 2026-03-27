@@ -1,7 +1,12 @@
+import Link from "next/link";
+
 export default function Footer() {
-    return (
-      <footer>
-        <p>2026 Vefforritun 2</p>
-      </footer>
-    );
-  }
+  return (
+    <footer className="site-footer">
+      <div className="container footer-inner">
+        <p>Vefforritun 2, 2026 - Hópverkefni 2</p>
+        <Link href="/admin">Admin</Link>
+      </div>
+    </footer>
+  );
+}

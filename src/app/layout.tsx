@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "H2 verkefni",
+  title: "H2",
   description: "Next.js framendi fyrir H1 vefþjónustur",
 };
 

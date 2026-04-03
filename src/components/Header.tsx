@@ -28,7 +28,7 @@ export default function Header() {
     <header className="site-header">
       <div className="container header-inner">
         <Link href="/" className="logo">
-          H2 verkefni
+          H2
         </Link>
 
         <nav>

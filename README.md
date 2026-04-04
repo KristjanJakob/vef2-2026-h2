@@ -63,3 +63,21 @@ password: 123456
 
 - Búa til viðburð
 - Hlaða upp mynd fyrir viðburðinn
+- Eyða viðburði
+
+## Tækni
+
+- Next.js
+- TypeScript
+- Express
+- Prisma
+- Cloudinary
+- CSS
+
+## Hýsing
+kemur hér
+
+## Hópur
+
+Kristján Jakob Ásgrímsson - kja15@hi.is
+Repo:https://github.com/KristjanJakob/vef2-2026-h2

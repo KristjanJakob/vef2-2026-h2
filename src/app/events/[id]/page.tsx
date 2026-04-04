@@ -1,8 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { fetchApi } from "@/lib/api";
-import { EventItem, PaginatedEventsResponse } from "@/types";
-import EventCard from "@/components/EventCard";
+import { EventItem } from "@/types";
 
 type Props = {
   searchParams: Promise<{

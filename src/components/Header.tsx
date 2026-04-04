@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { getToken, removeToken } from "@/lib/auth";
+import { useSyncExternalStore } from "react";
 
 const links = [
   { href: "/", label: "Forsíða" },
@@ -12,17 +12,28 @@ const links = [
   { href: "/admin", label: "Admin" },
 ];
 
+function subscribe(callback: () => void) {
+  window.addEventListener("storage", callback);
+  return () => window.removeEventListener("storage", callback);
+}
+
+function getSnapshot() {
+  return !!getToken();
+}
+
+function getServerSnapshot() {
+  return false;
+}
+
 export default function Header() {
   const pathname = usePathname();
   const router = useRouter();
 
-  const [mounted, setMounted] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    setLoggedIn(!!getToken());
-  }, [pathname]);
+  const loggedIn = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot,
+  );
 
   function handleLogout() {
     removeToken();
@@ -57,11 +68,7 @@ export default function Header() {
         </nav>
 
         <div className="header-actions">
-          {!mounted ? (
-            <Link href="/login" className="button">
-              Innskrá
-            </Link>
-          ) : loggedIn ? (
+          {loggedIn ? (
             <button onClick={handleLogout} className="button secondary">
               Útskrá
             </button>

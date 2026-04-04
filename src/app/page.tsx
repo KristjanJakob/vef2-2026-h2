@@ -5,10 +5,9 @@ export default function HomePage() {
   return (
     <section className="hero">
       <div className="hero-text">
-        <h1>Verkefni H2</h1>
+        <h1>Tixi.is</h1>
         <p>
-          Þetta er forsíða með dummy content. Hér getur komið lorem ipsum texti,
-          kynning á verkefninu og mynd frá Unsplash.
+          Þetta er forsíða með dummy content. Hér getur þú leitað af viðburðum.
         </p>
         <SearchForm />
       </div>

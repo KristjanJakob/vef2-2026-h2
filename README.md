@@ -20,10 +20,6 @@ Backend keyrir á:
 
 ### 2. Keyra frontend (H2)
 
-Fara í H2 möppu
-
-2. Keyra frontend (H2)
-
 Fara í H2 möppu:
 
 `npm install`

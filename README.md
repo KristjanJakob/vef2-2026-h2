@@ -71,7 +71,7 @@ password: 123456
 - CSS
 
 ## Hýsing
-H2:
+H2: https://vef2-2026-h2-5sql.vercel.app/
 H1: https://vef2-2026-h1.onrender.com
 
 ## Hópur

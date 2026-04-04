@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { removeToken } from "@/lib/auth";
+import { getToken, removeToken } from "@/lib/auth";
 
 const links = [
   { href: "/", label: "Forsíða" },
@@ -15,8 +16,13 @@ export default function Header() {
   const pathname = usePathname();
   const router = useRouter();
 
-  const loggedIn =
-    typeof window !== "undefined" && !!localStorage.getItem("token");
+  const [mounted, setMounted] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    setLoggedIn(!!getToken());
+  }, [pathname]);
 
   function handleLogout() {
     removeToken();
@@ -51,7 +57,11 @@ export default function Header() {
         </nav>
 
         <div className="header-actions">
-          {loggedIn ? (
+          {!mounted ? (
+            <Link href="/login" className="button">
+              Innskrá
+            </Link>
+          ) : loggedIn ? (
             <button onClick={handleLogout} className="button secondary">
               Útskrá
             </button>

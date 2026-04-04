@@ -11,6 +11,7 @@ export default function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
@@ -18,6 +19,7 @@ export default function LoginForm() {
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
     setError("");
+    setSuccess("");
     setLoading(true);
 
     try {
@@ -26,16 +28,22 @@ export default function LoginForm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({
+          username: username.trim().toLowerCase(),
+          password,
+        }),
       });
 
-      if (!res.ok) {
-        throw new Error("Röng innskráning");
+      const data = (await res.json()) as LoginResponse | { error?: string };
+
+      if (!res.ok || !("token" in data)) {
+        throw new Error(data.error || "Röng innskráning");
       }
 
-      const data = (await res.json()) as LoginResponse;
       saveToken(data.token);
+      setSuccess("Innskráning tókst. Fer á admin svæði...");
       router.push("/admin");
+      router.refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Villa kom upp");
     } finally {
@@ -67,6 +75,7 @@ export default function LoginForm() {
       </div>
 
       {error ? <p className="error">{error}</p> : null}
+      {success ? <p className="success">{success}</p> : null}
 
       <button type="submit" className="button" disabled={loading}>
         {loading ? "Skrái inn..." : "Innskrá"}

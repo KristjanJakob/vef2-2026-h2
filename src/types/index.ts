@@ -46,3 +46,9 @@ export type EventImage = {
     url: string;
     alt?: string | null;
 };
+
+export type MetaListResponse<T> = {
+    data: T[];
+};
+  
+export type EventStatus = "PUBLISHED" | "DRAFT";

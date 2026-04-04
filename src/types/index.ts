@@ -1,12 +1,13 @@
 export type EventItem = {
-    id: number | string;
+    id: string;
     title: string;
     description?: string | null;
     images?: EventImage[];
-    location?: string | null;
+    location?: Location | null;
     startsAt?: string | null;
     endsAt?: string | null;
     category?: Category | null;
+    status?: EventStatus;
 };
   
 export type User = {

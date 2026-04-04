@@ -71,7 +71,8 @@ password: 123456
 - CSS
 
 ## Hýsing
-kemur hér
+H2:
+H1: https://vef2-2026-h1.onrender.com
 
 ## Hópur
 

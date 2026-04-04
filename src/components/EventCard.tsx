@@ -24,27 +24,34 @@ export default function EventCard({ event }: Props) {
       )}
 
       <div className="card-content">
-        <h2>{event.title}</h2>
+        <h2 className="card-title">{event.title}</h2>
 
-        {event.description ? <p>{event.description}</p> : <p>Engin lýsing.</p>}
+        {event.description ? (
+          <p className="card-description">{event.description}</p>
+        ) : (
+          <p className="card-description">Engin lýsing.</p>
+        )}
 
-        {event.location?.name ? (
-          <p>
-            <strong>Staðsetning:</strong> {event.location.name}
-          </p>
-        ) : null}
+        <div className="card-meta">
+          {event.location?.name ? (
+            <p>
+              <strong>Staðsetning:</strong> {event.location.name}
+            </p>
+          ) : null}
 
-        {event.category?.name ? (
-          <p>
-            <strong>Flokkur:</strong> {event.category.name}
-          </p>
-        ) : null}
+          {event.category?.name ? (
+            <p>
+              <strong>Flokkur:</strong> {event.category.name}
+            </p>
+          ) : null}
 
-        {event.startsAt ? (
-          <p>
-            <strong>Byrjar:</strong> {new Date(event.startsAt).toLocaleString("is-IS")}
-          </p>
-        ) : null}
+          {event.startsAt ? (
+            <p>
+              <strong>Byrjar:</strong>{" "}
+              {new Date(event.startsAt).toLocaleString("is-IS")}
+            </p>
+          ) : null}
+        </div>
 
         <Link href={`/events/${event.id}`} className="button">
           Skoða nánar

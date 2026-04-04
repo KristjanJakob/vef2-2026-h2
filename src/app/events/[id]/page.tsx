@@ -4,8 +4,8 @@ import { fetchApi } from "@/lib/api";
 import { EventItem } from "@/types";
 
 type Props = {
-  searchParams: Promise<{
-    page?: string;
+  params: Promise<{
+    id?: string;
   }>;
 };
 
